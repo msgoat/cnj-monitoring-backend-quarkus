@@ -5,10 +5,10 @@
     <artifactId>cnj-monitoring-backend-quarkus</artifactId>
     <version>${revision}${changelist}${sha1}</version>
     <packaging>jar</packaging>
-    <description>Cloud native Java backend using MicroProfile Metrics feature for monitoring based on Quarkus</description>
+    <description>Cloud native Java backend based on Quarkus using MicroProfile Metrics feature for monitoring</description>
     <properties>
         <!-- new Maven version management -->
-        <revision>2.0.0</revision>
+        <revision>2.1.0</revision>
         <sha1></sha1>
         <changelist></changelist>
         <!-- common properties -->

@@ -34,7 +34,7 @@ public class TasksResource {
     private HttpHeaders httpHeaders;
 
     @Inject
-    private TaskManagement boundary;
+    TaskManagement boundary;
 
     @GET
     public Response getAllTasks() {
