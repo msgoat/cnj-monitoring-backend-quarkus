@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - upgraded Quarkus to 2.11.2 
 - replaced MicroProfile Metrics with Micrometer as recommended by Quarkus
+- activated collection of JDBC DataSource metrics
 
 ## [2.1.0] - 2022-08-12
 ### Changed
