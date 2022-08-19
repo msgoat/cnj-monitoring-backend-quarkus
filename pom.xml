@@ -8,7 +8,7 @@
     <description>Cloud native Java backend based on Quarkus using MicroProfile Metrics feature for monitoring</description>
     <properties>
         <!-- new Maven version management -->
-        <revision>2.1.0</revision>
+        <revision>2.2.0</revision>
         <sha1></sha1>
         <changelist></changelist>
         <!-- common properties -->
@@ -17,7 +17,7 @@
         <!-- runtime related properties -->
         <java.version>11</java.version>
         <jakartaee.version>9.1.0</jakartaee.version>
-        <quarkus.version>2.7.2.Final</quarkus.version>
+        <quarkus.version>2.11.2.Final</quarkus.version>
         <quarkus.package.type>uber-jar</quarkus.package.type>
         <microprofile.version>4.1</microprofile.version>
         <!-- common logging dependencies -->
@@ -160,7 +160,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.3.1</version>
+            <version>42.3.3</version>
         </dependency>
         <dependency>
             <groupId>group.msg.at.cloud.common</groupId>
@@ -179,7 +179,7 @@
         <!-- showcase specific section -->
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-smallrye-metrics</artifactId>
+            <artifactId>quarkus-micrometer-registry-prometheus</artifactId>
         </dependency>
         <!-- =========================== -->
         <!-- test time dependencies      -->
