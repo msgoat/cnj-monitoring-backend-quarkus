@@ -25,7 +25,7 @@ public class GenericRepository extends AbstractGenericRepository {
      * Actual persistence context of this application
      */
     @PersistenceContext
-    private EntityManager entityManager;
+    EntityManager entityManager;
 
     /**
      * @see group.msg.at.cloud.common.persistence.jpa.repository.AbstractGenericRepository#getEntityManager()

@@ -1,4 +1,4 @@
-FROM eclipse-temurin:11-jre
+FROM eclipse-temurin:17-jre
 
 LABEL maintainer="michael.theis@msg.group"
 LABEL ${project.groupId}.${project.artifactId}.project="CloudTrain"
@@ -10,27 +10,20 @@ ARG ARG_JAVA_APPLICATION_HOME=/home/quarkus
 
 ENV JAVA_APPLICATION=${ARG_JAVA_APPLICATION} \
     JAVA_APPLICATION_HOME=${ARG_JAVA_APPLICATION_HOME} \
-    JAVA_OPTS="-XshowSettings:vm -XX:+UseG1GC -XX:MetaspaceSize=256m -XX:+DisableExplicitGC -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled" \
+    JAVA_OPTS="-XshowSettings:vm -XX:MetaspaceSize=256m -XX:+DisableExplicitGC -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled" \
     EXT_JAVA_OPTS="" \
+    AGENT_JAVA_OPTS="" \
     DOCKER_JAVA_OPTS="-XX:+UseContainerSupport -XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0" \
     QUARKUS_JAVA_OPTS="" \
-    QUARKUS_ARGUMENTS="" \
-    WAIT_FOR_URLS="" \
-    WAIT_FOR_ARGUMENTS="-i 5"
+    QUARKUS_ARGUMENTS=""
 
-RUN echo "install missing tool netcat to be able to wait for postgres" && \
-    apt-get update && \
-    apt-get install --no-install-recommends --yes netcat && \
-    apt-get clean && \
-    echo "adding non-root run user quarkus to system" && \
+# create non-root user to run application
+RUN echo "adding run user quarkus to system" && \
     addgroup --gid 1000 --system quarkus && \
     adduser --system --disabled-login --disabled-password --ingroup quarkus --uid 1000 quarkus
 
 # copy entrypoint script
 COPY docker-entrypoint.sh /
-
-# copy wait script
-COPY wait-for.sh $ARG_JAVA_APPLICATION_HOME/
 
 # copy build artifacts into application home folder (here: quarkus deployment folder)
 COPY *.jar ${ARG_JAVA_APPLICATION_HOME}/
@@ -38,7 +31,6 @@ COPY *.jar ${ARG_JAVA_APPLICATION_HOME}/
 # allow non-root user to access and execute all copied files
 RUN chown quarkus:quarkus /docker-entrypoint.sh && \
     chmod u+x /docker-entrypoint.sh && \
-    chmod u+x ${ARG_JAVA_APPLICATION_HOME}/wait-for.sh && \
     chown -R quarkus:quarkus ${ARG_JAVA_APPLICATION_HOME}
 
 # use user ID instead of user name to allow kubernetes to check non-root users

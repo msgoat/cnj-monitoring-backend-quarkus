@@ -5,16 +5,21 @@ env:
     SONARQUBE_TOKEN: "cloudtrain-codebuild-sonarqube:token"
     DOCKERHUB_USER: "cloudtrain-codebuild-dockerhub:docker-user"
     DOCKERHUB_PAT: "cloudtrain-codebuild-dockerhub:docker-pat"
+    TEST_OIDC_CLIENT_CLIENT_ID: "cloudtrain-codebuild-common-test:test.oidc.client.clientId"
+    TEST_OIDC_CLIENT_CLIENT_SECRET: "cloudtrain-codebuild-common-test:test.oidc.client.clientSecret"
+    TEST_OIDC_CLIENT_ACCESS_TOKEN_URI: "cloudtrain-codebuild-common-test:test.oidc.client.accessTokenUri"
+    TEST_OIDC_CLIENT_USER: "cloudtrain-codebuild-common-test:test.oidc.client.user"
+    TEST_OIDC_CLIENT_PASSWORD: "cloudtrain-codebuild-common-test:test.oidc.client.password"
 
 phases:
   install:
     on-failure: ABORT
     commands:
-      - echo "Install helm"
-      - curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-      - chmod 700 get_helm.sh
-      - ./get_helm.sh
-      - helm version
+      - echo "Running phase install"
+      - echo "Download and run common installation script"
+      - aws s3 cp s3://s3-eu-west-1-cloudtrain-codebuild-shared/cloudtrain-codebuild-install.sh ~/
+      - chmod u+x ~/cloudtrain-codebuild-install.sh
+      - ~/cloudtrain-codebuild-install.sh
   pre_build:
     on-failure: ABORT
     commands:
