@@ -100,10 +100,9 @@ persistence:
     host: cnj-monitoring-resources-postgresql
     port: 5432
     secret:
-      name: cnj-monitoring-resources-postgres
+      name: cnj-monitoring-resources-postgresql
       keys:
-        user: postgresql-user
-        password: postgresql-password
+        password: postgres-password
 
 # metrics configuration
 metrics:

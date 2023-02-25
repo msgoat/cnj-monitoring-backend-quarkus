@@ -62,10 +62,7 @@ spec:
             - name: CLOUDTRAIN_SERVICES_GRANTEDPERMISSIONS_MP_REST_URL
               value: {{ .Values.downstream.rest.url | quote }}
             - name: QUARKUS_DATASOURCE_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.persistence.postgres.secret.name }}
-                  key: {{ .Values.persistence.postgres.secret.keys.user }}
+              value: "postgres"
             - name: QUARKUS_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:
