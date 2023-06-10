@@ -6,12 +6,12 @@ import group.msg.at.cloud.cloudtrain.core.entity.Task;
 import io.micrometer.core.annotation.Counted;
 import io.micrometer.core.annotation.Timed;
 
-import javax.annotation.security.RolesAllowed;
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
+import jakarta.annotation.security.RolesAllowed;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
 

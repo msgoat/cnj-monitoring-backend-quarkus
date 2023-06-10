@@ -1,4 +1,4 @@
-FROM eclipse-temurin:17-jre
+FROM docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-docker-jre17:latest
 
 LABEL maintainer="michael.theis@msg.group"
 LABEL ${project.groupId}.${project.artifactId}.project="CloudTrain"
@@ -13,7 +13,7 @@ ENV JAVA_APPLICATION=${ARG_JAVA_APPLICATION} \
     JAVA_OPTS="-XshowSettings:vm -XX:MetaspaceSize=256m -XX:+DisableExplicitGC -XX:+UseStringDeduplication -XX:+ParallelRefProcEnabled" \
     EXT_JAVA_OPTS="" \
     AGENT_JAVA_OPTS="" \
-    DOCKER_JAVA_OPTS="-XX:+UseContainerSupport -XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0" \
+    DOCKER_JAVA_OPTS="-XX:InitialRAMPercentage=75.0 -XX:MaxRAMPercentage=75.0" \
     QUARKUS_JAVA_OPTS="" \
     QUARKUS_ARGUMENTS=""
 

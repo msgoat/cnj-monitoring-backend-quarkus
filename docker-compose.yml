@@ -18,23 +18,23 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
 
   downstream:
     image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-monitoring-downstream:latest
     environment:
       DOCKER_JAVA_OPTS: -Xms1g -Xmx1g
+      SPRING_PROFILES_ACTIVE: "cloud"
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: https://oidc.cloudtrain.aws.msgoat.eu/realms/cloudtrain/protocol/openid-connect/certs
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI: https://oidc.cloudtrain.aws.msgoat.eu/realms/cloudtrain
 
   backend:
-    image: ${docker.image.name}:${project.version}
+    image: docker.cloudtrain.aws.msgoat.eu/cloudtrain/cnj-monitoring-backend-quarkus:latest
     ports:
-      - "38080:8080"
-      - "38089:8089"
+      - "38090:8080"
     environment:
       DOCKER_JAVA_OPTS: "-Xms1g -Xmx1g"
-      AGENT_JAVA_OPTS: "-javaagent:/home/quarkus/org.jacoco.agent.jar=output=tcpserver,address=*,port=8089"
-      QUARKUS_PROFILE: dev
       MP_JWT_VERIFY_PUBLICKEY_LOCATION: "https://oidc.cloudtrain.aws.msgoat.eu/realms/cloudtrain/protocol/openid-connect/certs"
       MP_JWT_VERIFY_ISSUER: "https://oidc.cloudtrain.aws.msgoat.eu/realms/cloudtrain"
       CLOUDTRAIN_SERVICES_GRANTEDPERMISSIONS_MP_REST_URL: "http://downstream:8080"
@@ -46,3 +46,7 @@ services:
         condition: service_healthy
       downstream:
         condition: service_started
+
+volumes:
+
+  postgres-data:

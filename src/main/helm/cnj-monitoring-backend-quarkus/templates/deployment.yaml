@@ -65,7 +65,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name:  {{ .Values.persistence.postgres.secret.name }}
-                  key: {{ .Values.persistence.postgres.secret.keys.username }}
+                  key: {{ .Values.persistence.postgres.secret.keys.user }}
             - name: QUARKUS_DATASOURCE_PASSWORD
               valueFrom:
                 secretKeyRef:

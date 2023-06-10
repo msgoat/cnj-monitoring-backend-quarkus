@@ -4,8 +4,8 @@ import group.msg.at.cloud.cloudtrain.adapter.rest.grantedpermissions.GrantedPerm
 import group.msg.at.cloud.cloudtrain.adapter.rest.grantedpermissions.GrantedPermissionsClient;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
-import javax.enterprise.context.Dependent;
-import javax.inject.Inject;
+import jakarta.enterprise.context.Dependent;
+import jakarta.inject.Inject;
 import java.security.Principal;
 import java.util.List;
 

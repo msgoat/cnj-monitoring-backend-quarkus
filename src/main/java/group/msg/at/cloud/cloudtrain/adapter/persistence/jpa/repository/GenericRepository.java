@@ -2,9 +2,9 @@ package group.msg.at.cloud.cloudtrain.adapter.persistence.jpa.repository;
 
 import group.msg.at.cloud.common.persistence.jpa.repository.AbstractGenericRepository;
 
-import javax.enterprise.context.Dependent;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
+import jakarta.enterprise.context.Dependent;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
 /**
  * Concrete Implementation of an {@link AbstractGenericRepository}.

@@ -19,7 +19,7 @@ container:
     image:
       repository: ${docker.image.name}
       tag: ${project.version}
-      pullPolicy: Always # IfNotPresent
+      pullPolicy: IfNotPresent
     ports:
       http:
         number: 8080
@@ -51,8 +51,8 @@ service:
 
 ingress:
   enabled: true
-  class: traefik
-  type: traefik
+  class: nginx
+  type: nginx
   host: "${k8s.ingress.host}"
   path: "${k8s.ingress.path}"
   pathType: Prefix
@@ -85,8 +85,8 @@ podDisruptionBudget:
 # security configuration (Open ID Connect)
 security:
   oidc:
-    jwksUri: "https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain/protocol/openid-connect/certs"
-    issuer: "https://oidc.cloudtrain.aws.msgoat.eu/auth/realms/cloudtrain"
+    jwksUri: "https://oidc.cloudtrain.aws.msgoat.eu/realms/cloudtrain/protocol/openid-connect/certs"
+    issuer: "https://oidc.cloudtrain.aws.msgoat.eu/realms/cloudtrain"
 
 # downstream service configuration
 downstream:
@@ -100,10 +100,10 @@ persistence:
     host: cnj-monitoring-resources-postgresql
     port: 5432
     secret:
-      name: cnj-monitoring-resources-pg
+      name: cnj-monitoring-resources-postgres
       keys:
-        username: user
-        password: password
+        user: postgresql-user
+        password: postgresql-password
 
 # metrics configuration
 metrics:
