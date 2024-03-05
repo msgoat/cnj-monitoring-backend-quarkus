@@ -99,7 +99,7 @@ Check [changelog](changelog.md) for latest version and release information.
 
 ## Helm Pull Command
 
-`helm pull docker.cloudtrain.aws.msgoat.eu/cloudtrain-charts/cnj-monitoring-backend-quarkus`
+`helm pull oci://docker.cloudtrain.aws.msgoat.eu/cloudtrain-charts/cnj-monitoring-backend-quarkus`
 
 ## HOW-TO build this application locally
 
